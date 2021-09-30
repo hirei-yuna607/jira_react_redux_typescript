@@ -70,6 +70,7 @@ const Auth: React.FC = () => {
         value={credential.username}
         onChange={handleInputChange}
       />
+      <br />
       <TextField
         InputLabelProps={{
           shrink: true,
@@ -80,6 +81,18 @@ const Auth: React.FC = () => {
         value={credential.password}
         onChange={handleInputChange}
       />
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        onClick={login}
+      >
+        {isLoginView ? "ログイン" : "新規登録"}
+      </Button>
+      <span onClick={() => dispatch(toggleMode())}>
+        {isLoginView ? "Create New Account" : "Back To Login"}
+      </span>
     </div>
   );
 };

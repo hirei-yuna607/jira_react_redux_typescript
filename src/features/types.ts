@@ -39,3 +39,50 @@ export interface AUTH_STATE {
     loginUser: LOGIN_USER;
     profiles: PROFILE[];
 }
+
+
+// taskSlice関連のデータ型定義
+// Djangoで指定したパラメータと同じ
+// serializerのfieldsと同じ
+export interface READ_TASK {
+    id: number;
+    task: string;
+    description: string;
+    criteria: string;
+    status: string;
+    status_name: string;
+    category: number;
+    category_item: string;
+    estimate: number;
+    responsible: number;
+    responsible_username: string;
+    owner: number;
+    owner_username: string;
+    created_at: string;
+    updated_at: string;
+  }
+
+  export interface POST_TASK {
+    id: number;
+    task: string;
+    description: string;
+    criteria: string;
+    status: string;
+    category: number;
+    estimate: number;
+    responsible: number;
+  }
+// カテゴリーの一覧を格納するためのデータ型
+  export interface CATEGORY {
+      id: number;
+      item: string;
+  }
+
+// 配列は一覧を取得するため(tasks, users, category)
+export interface TASK_STATE {
+    tasks: READ_TASK[];
+    editedTask: POST_TASK;
+    selectedTask: READ_TASK;
+    users: USER[];
+    category: CATEGORY[];
+}
