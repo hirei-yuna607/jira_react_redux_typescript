@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { Grid, Avatar } from "@material-ui/core";
 import {
   makeStyles,
-  createMuiTheme,
+  createTheme,
   MuiThemeProvider,
   Theme,
 } from "@material-ui/core/styles";
@@ -31,7 +31,7 @@ import TaskDisplay from "./features/task/TaskDisplay";
 
 import { AppDispatch } from "./app/store";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     secondary: {
       main: "#3cb371",
@@ -130,10 +130,12 @@ const App: React.FC = () => {
               container
               direction="column"
               alignItems="center"
-              justify="center"
+              // justify="center"
               style={{ minHeight: "80vh" }}
             >
               <Grid item>
+                {/* editedTaskのstatus属性が存在する場合は、TaskFormを、
+                存在しない場合はTaskDisplayを表示する  */}
                 {editedTask.status ? <TaskForm /> : <TaskDisplay />}
               </Grid>
             </Grid>
