@@ -8,130 +8,131 @@ import {
 // taskの一覧をgetで取得するための非同期関数
 export const fetchAsyncGetTasks = createAsyncThunk("task/getTask", async () => {
     const res = await axios.get<READ_TASK[]>(
-        `${process.env.REACT_APP_API_URL}/api/tasks/`,
-        {
-            headers: {
-                Authorization: `JWT ${localStorage.localJWT}`,
-            },
-        }
+      `${process.env.REACT_APP_API_URL}/api/tasks/`,
+      {
+        headers: {
+          Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      }
     );
     return res.data;
-});
+  });
 // usersの一覧をgetで取得するための非同期関数
 export const fetchAsyncGetUsers = createAsyncThunk(
     "task/getUsers",
     async () => {
-        const res = await axios.get<USER[]>(
-            `${process.env.REACT_APP_API_URL}/api/users/`,
-            {
-                headers: {
-                    Authorization: `JWT ${localStorage.localJWT}`,
-                },
-            }
-        );
-        return res.data;
+      const res = await axios.get<USER[]>(
+        `${process.env.REACT_APP_API_URL}/api/users/`,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
     }
-);
-// categoryの一覧をgrtで取得するための非同期関数
+  );
+// categoryの一覧をgetで取得するための非同期関数
 export const fetchAsyncGetCategory = createAsyncThunk(
     "task/getCategory",
     async () => {
-        const res = await axios.get<CATEGORY[]>(
-            `${process.env.REACT_APP_API_URL}/api/category/`,
-            {
-                headers: {
-                    Authorization: `JWT ${localStorage.localJWT}`,
-                },
-            }
-        );
-        return res.data;
+      const res = await axios.get<CATEGORY[]>(
+        `${process.env.REACT_APP_API_URL}/api/category/`,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
     }
-);
+  );
 // 新規にcategoryを作ることができる非同期関数
 export const fetchAsyncCreateCategory = createAsyncThunk(
     "task/createCategory",
     async (item: string) => {
-        const res = await axios.post<CATEGORY>(
-            `${process.env.REACT_APP_API_URL}/api/category/`,
-            {item: item},
-            {
-                headers: {
-                    Authorization: `JWT ${localStorage.localJWT}`,
-                },
-            }
-        );
-        return res.data;
+      const res = await axios.post<CATEGORY>(
+        `${process.env.REACT_APP_API_URL}/api/category/`,
+        { item: item },
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
     }
-);
+  );
 // taskを新規に作る非同期関数
 export const fetchAsyncCreateTask = createAsyncThunk(
     "task/createTask",
     async (task: POST_TASK) => {
-        const res = await axios.post<READ_TASK>(
-            `${process.env.REACT_APP_API_URL}/api/tasks`,
-            task,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `JWT ${localStorage.localJWT}`,
-                },
-            }
-        );
-        return res.data;
+      const res = await axios.post<READ_TASK>(
+        `${process.env.REACT_APP_API_URL}/api/tasks/`,
+        task,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
     }
-);
+  );
 // taskを更新するための非同期関数
 export const fetchAsyncUpdateTask = createAsyncThunk(
     "task/updateTask",
     async (task: POST_TASK) => {
-        const res = await axios.put<READ_TASK>(
-            `${process.env.REACT_APP_API_URL}/api/tasks/${task.id}`,
-            task,
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `JWT ${localStorage.localJWT}`,
-                },
-            }
-        );
-        return res.data;
+      const res = await axios.put<READ_TASK>(
+        `${process.env.REACT_APP_API_URL}/api/tasks/${task.id}/`,
+        task,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `JWT ${localStorage.localJWT}`,
+          },
+        }
+      );
+      return res.data;
     }
-);
+  );
 // taskを削除する際の非同期関数
 export const fetchAsyncDeleteTask = createAsyncThunk(
     "task/deleteTask",
     async (id: number) => {
-        await axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}/`,{
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        return id;
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/tasks/${id}/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `JWT ${localStorage.localJWT}`,
+        },
+      });
+      return id;
     }
-);
+  );
 
 export const initialState: TASK_STATE = {
     // task, users, categoryは配列
     tasks: [
         {
-            id: 0,
-            task: "",
-            description: "",
-            criteria: "",
-            owner: 0,
-            owner_username: "",
-            responsible: 0,
-            responsible_username: "",
-            estimate: 0,
-            category: 0,
-            category_item: "",
-            status: "",
-            status_name: "",
-            created_at: "",
-            updated_at: "",
+          id: 0,
+          task: "",
+          description: "",
+          criteria: "",
+          owner: 0,
+          owner_username: "",
+          responsible: 0,
+          responsible_username: "",
+          estimate: 0,
+          category: 0,
+          category_item: "",
+          status: "",
+          status_name: "",
+          created_at: "",
+          updated_at: "",
         },
-    ],
-    editedTask: {
+      ],
+      editedTask: {
         id: 0,
         task: "",
         description: "",
@@ -140,8 +141,8 @@ export const initialState: TASK_STATE = {
         estimate: 0,
         category: 0,
         status: "",
-    },
-    selectedTask: {
+      },
+      selectedTask: {
         id: 0,
         task: "",
         description: "",
@@ -157,20 +158,20 @@ export const initialState: TASK_STATE = {
         status_name: "",
         created_at: "",
         updated_at: "",
-    },
-    users: [
+      },
+      users: [
         {
-            id: 0,
-            username: "",
+          id: 0,
+          username: "",
         },
-    ],
-    category: [
+      ],
+      category: [
         {
-            id: 0,
-            item: "",
+          id: 0,
+          item: "",
         },
-    ],
-};
+      ],
+    };
 
 export const taskSlice = createSlice({
     name: "task",
